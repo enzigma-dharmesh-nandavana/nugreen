@@ -1,0 +1,21 @@
+<ion-content class="ion-padding">
+  <div class="ion-align-items-center ion-justify-content-center">
+    <ion-button expand="block" color="primary" (click)="showCallOptions = true" *ngIf="!showCallOptions">
+      <ion-icon name="call" slot="start"></ion-icon>
+      Call
+    </ion-button>
+
+    <ion-button expand="block" color="primary" *ngIf="showCallOptions">
+      Call Now
+    </ion-button>
+    <ion-button expand="block" color="primary" *ngIf="showCallOptions">
+      Text My Manager
+    </ion-button>
+    <ion-button expand="end" shape="round" color="primary" class="ion-float-start"
+    (click)="showCallOptions = false" *ngIf="showCallOptions">&lt;</ion-button>
+    <ion-button expand="block" color="primary" *ngIf="!showCallOptions">
+      <ion-icon name="mail" slot="start"></ion-icon>
+      Email
+    </ion-button>
+  </div>
+</ion-content>

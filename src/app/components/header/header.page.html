@@ -1,0 +1,58 @@
+<ion-menu contentId="main-content" *ngIf="isRegistered">
+  <ion-content class="ion-padding">
+    <ion-list>
+      <ion-item routerLink="/filter">
+        <ion-icon name="filter" slot="start"></ion-icon>
+        <ion-label>Filter</ion-label>
+      </ion-item>
+
+      <ion-item href="#">
+        <ion-icon name="cloud-download" slot="start"></ion-icon>
+        <ion-label>Download Settlements</ion-label>
+      </ion-item>
+
+      <ion-item href="#">
+        <ion-icon name="cloud-upload-outline" slot="start"></ion-icon>
+        <ion-label>Upload BoL</ion-label>
+      </ion-item>
+
+      <ion-item routerLink="/bol-history">
+        <ion-icon name="time" slot="start"></ion-icon>
+        <ion-label>BoL History</ion-label>
+      </ion-item>
+
+      <ion-item href="#">
+        <ion-icon name="eye-outline" slot="start"></ion-icon>
+        <ion-label>View Images</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-header class="header-container" [translucent]="true" id="main-content"> 
+  <ion-toolbar class="header-toolbar" >
+    <ion-grid>
+      <ion-row class="ion-align-items-center">
+        <ion-col size="4" class="ion-text-center">
+          <ion-buttons size="large" *ngIf="company.isVerified">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+        </ion-col>
+        <ion-col size="4" class="ion-text-center">
+          <img class="logo-image" src="assets/header-logo-stacked.png" alt="ngmlogostacked">
+        </ion-col>
+        <ion-col size="4">
+          <div class="profile-section ion-text-end" *ngIf="company.isVerified">
+            <ion-icon class="ion-padding-start" name="notifications" size="large"></ion-icon>
+            <ion-icon class="ion-padding-start" name="person" size="large"></ion-icon>
+            <div>
+              <div>{{ company.Full_Legal_Name_Of_Business__c }}</div>
+              <div>{{ company.Vendor_Number__c }}</div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+

@@ -1,0 +1,69 @@
+<nu-header></nu-header>
+<ion-content class="container">
+    <ion-card>
+        <ion-grid class="ion-text-center">
+            <ion-row>
+                <ion-col size="5"></ion-col>
+                <ion-col size="2"></ion-col>
+                <ion-col size="3">
+                    <p><small><strong>Uploaded Documents</strong></small></p>
+                </ion-col>
+                <ion-col size="2">
+                    <p><small><strong>Verification Status</strong></small></p>
+                </ion-col>
+            </ion-row>
+
+            <ion-row class="ion-padding-top">
+                <ion-col size="5">
+                    <a routerLink="/home/document-list" [queryParams]="{ buttonClicked: 'taxIdButton' }">Tax ID
+                        Documentation</a>
+                </ion-col>
+                <ion-col size="2" class="ion-margin-bottom">
+                    <ion-icon size="large" name="arrow-up-circle" *ngIf="!company.isVerified"
+                        routerLink="/home/document-upload"></ion-icon>
+                </ion-col>
+                <ion-col size="3">
+                    <ion-icon size="large" name="checkmark-circle"></ion-icon>
+                </ion-col>
+                <ion-col size="2">
+                    <ion-icon *ngIf="!company.isVerified" size="large" name="alert-circle"></ion-icon>
+                    <ion-icon *ngIf="company.isVerified" size="large" name="checkmark-circle"></ion-icon>
+                </ion-col>
+            </ion-row>
+
+            <ion-row class="ion-padding-top">
+                <ion-col size="5">
+                    <a routerLink="/home/document-list" [queryParams]="{ buttonClicked: 'w9Button' }">W9</a>
+                </ion-col>
+                <ion-col size="2" class="ion-margin-bottom">
+                    <ion-icon size="large" name="arrow-up-circle" *ngIf="!company.isVerified"
+                        routerLink="/home/document-upload"></ion-icon>
+                </ion-col>
+                <ion-col size="3">
+                    <ion-icon size="large" name="checkmark-circle"></ion-icon>
+                </ion-col>
+                <ion-col size="2">
+                    <ion-icon *ngIf="!company.isVerified" size="large" name="alert-circle"></ion-icon>
+                    <ion-icon *ngIf="company.isVerified" size="large" name="checkmark-circle"></ion-icon>
+                </ion-col>
+            </ion-row>
+
+        </ion-grid>
+    </ion-card>
+
+    <ion-grid class="ion-padding">
+        <div class="bottom-align ion-padding">
+            <ion-fab-button *ngIf="!company.isVerified" size="large" class="circular-button" routerLink="/home">
+                <span class="button-text">&lt;</span>
+            </ion-fab-button>
+            <ion-fab-button *ngIf="company.isVerified" size="large" class="circular-button"
+                routerLink="/home/company-profile">
+                <span class="button-text">&lt;</span>
+            </ion-fab-button>
+            <ion-fab-button *ngIf="!company.isVerified" size="large" class="circular-button"
+                routerLink="/home/banking-information">
+                <span class="button-text">&gt;</span>
+            </ion-fab-button>
+        </div>
+    </ion-grid>
+</ion-content>

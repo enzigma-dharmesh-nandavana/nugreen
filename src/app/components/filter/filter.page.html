@@ -1,0 +1,58 @@
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-label>Trade Date</ion-label>
+      <ion-checkbox (ionChange)="toggleTradeDate()"></ion-checkbox>
+    </ion-item>
+
+    <ion-item *ngIf="showTradeDate">
+      <ion-label position="stacked">Start Date</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" (ngModel)="startDate"></ion-datetime>
+
+    </ion-item>
+
+    <ion-item *ngIf="showTradeDate">
+      <ion-label position="stacked">End Date</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" (ngModel)="endDate"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Amount</ion-label>
+      <ion-checkbox (ionChange)="toggleAmount()"></ion-checkbox>
+    </ion-item>
+
+    <ion-item *ngIf="showAmount">
+      <ion-label class="ion-text-wrap">Price Range</ion-label>
+      <ion-range dualKnobs="true" (ngModel)="priceRange" pin="true">
+        <ion-label slot="start">{{ priceRange.lower }}</ion-label>
+        <ion-label slot="end">{{ priceRange.upper }}</ion-label>
+      </ion-range>
+    </ion-item>
+
+    <ion-list>
+      <ion-item>
+        <ion-text>
+          Status
+        </ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Open</ion-label>
+        <ion-checkbox (ngModel)="status.open"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>In-progress</ion-label>
+        <ion-checkbox (ngModel)="status.inProgress"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Completed</ion-label>
+        <ion-checkbox (ngModel)="status.completed"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+    <div>
+      <ion-item>
+        <ion-button slot="start" shape="round" color="primary">&lt;</ion-button>
+        <ion-button slot="end" shape="round" color="primary">Apply Filter</ion-button>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,36 @@
+<ion-tabs>
+  <ion-tab-bar class="nav-bar">
+    <ion-grid *ngIf="company.isVerified">
+      <ion-row class="nav-row">
+        <ion-col size="3" class="nav-thumbnail" routerLink="/home">
+              <img alt="Home" src="/assets/icon/Home-Asset-270.svg" /><br>Home
+        </ion-col>
+        <ion-col size="3" class="nav-thumbnail" [routerLink]="['/faq']">
+          <img alt="FAQ" src="/assets/icon/FAQ-Asset-152.svg" /><br>FAQ
+        </ion-col>
+        <ion-col size="3" class="nav-thumbnail" routerLink="/contact-your-rep">
+              <img alt="Rep" src="/assets/icon/Contact-Asset-210.svg" /><br>Contact Your Representative
+        </ion-col>
+        <ion-col size="3" class="nav-thumbnail" routerLink="/home/company-profile">
+              <img alt="Profile" src="/assets/icon/Business-Profile-Asset-269.svg" /><br> Bussiness Profile
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid *ngIf="!company.isVerified">
+      <ion-row class="nav-row">
+        <ion-col size="3" class="nav-thumbnail" routerLink="/home">
+              <img alt="Home" src="/assets/icon/Home-Asset-270.svg" /><br>Home
+        </ion-col>
+        <ion-col size="3" class="nav-thumbnail disabled" >
+          <img alt="FAQ" src="/assets/icon/FAQ-Asset-152.svg" /><br>FAQ
+        </ion-col>    
+        <ion-col size="3" class="nav-thumbnail disabled">
+              <img alt="Contact" src="/assets/icon/Contact-Asset-210.svg" /><br>Contact Your Representative
+        </ion-col>
+        <ion-col size="3" class="nav-thumbnail disabled">
+              <img alt="Profile" src="/assets/icon/Business-Profile-Asset-269.svg" /><br> Bussiness Profile
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-tab-bar>
+</ion-tabs>

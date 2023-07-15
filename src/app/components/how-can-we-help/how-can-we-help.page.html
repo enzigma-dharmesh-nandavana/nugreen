@@ -1,0 +1,27 @@
+<nu-header></nu-header>
+<h1 class="custom-heading"> How <br> can we <br> help ?</h1>
+<ion-list class="ion-margin ion-padding-top">
+  <ion-item class="checkbox-label ion-margin-top">
+    <ion-label>Recycle with us</ion-label>
+    <ion-checkbox slot="end" name="option" value="recycle" (ionChange)="setData($event , 'recycle')"></ion-checkbox>
+  </ion-item>
+
+  <ion-item class="checkbox-label">
+    <ion-label>Sell to us</ion-label>
+    <ion-checkbox slot="end" name="option" value="sell" (ionChange)="setData($event , 'sell')" checked></ion-checkbox>
+  </ion-item>
+
+  <ion-item class="checkbox-label">
+    <ion-label>Buy from us</ion-label>
+    <ion-checkbox slot="end" name="option" value="buy" (ionChange)="setData($event , 'buy')"></ion-checkbox>
+  </ion-item>
+  <ion-text class="ion-text-align-start" color="danger" *ngIf="errorMessage">{{errorMessage}}</ion-text>
+</ion-list>
+<div class="bottom-align ion-padding">
+  <ion-fab-button size="large" class="circular-button" (click)=handleBack()>
+    <span class="button-text">&lt;</span>
+  </ion-fab-button>
+  <ion-fab-button size="large" class="circular-button" shape="round" (click)=handleNext()>
+    <span class="button-text">&gt;</span>
+  </ion-fab-button>
+</div>

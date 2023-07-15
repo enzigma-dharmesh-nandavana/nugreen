@@ -1,0 +1,143 @@
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import '@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+:root {
+  --copper-color: rgba(184, 97, 37);
+  --blue-green-color: rgba(0, 62, 81, 1);
+}
+
+@font-face {
+  font-family: 'GalanoGrotesque';
+  src: url('/assets/font/Galano Grotesque/Galano Grotesque.otf') format('opentype');
+}
+ion-content {
+  font-family: 'GalanoGrotesque';
+}
+ion-button {
+  font-family: 'GalanoGrotesque';
+  --background: var(--blue-green-color);
+  --color: white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+ion-label{
+  color: var(--copper-color);
+  font-size: large;
+  font-family: 'GalanoGrotesque';
+}
+ion-text{
+  font-family: 'GalanoGrotesque';
+}
+ion-card-content{
+  color: var(--blue-green-color);
+}
+.required-field::before {
+  content: "* ";
+  color: red;
+}
+.blue-green-label{
+  color: var(--blue-green-color);
+}
+.copper-label{
+  color: var(--copper-color);
+  font-size: larger;
+  font-family: 'GalanoGrotesque';
+}
+.heading-copper-label{
+  color: var(--copper-color);
+  font-size: x-large;
+  font-family: 'GalanoGrotesque';
+}
+.container {
+  height: calc(100vh - 2rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login {
+  background-image: url('../src/assets/images/SignInPageImage.jpg');
+}
+.content-container{
+  margin-top: 9rem;
+}
+.circular-button {
+  --background: var(--blue-green-color);
+  --color: white;
+  width: 60px;
+  height: 60px;
+  font-size: 45px;
+  font-weight: bolder;
+  font-family: 'Courier New', Courier, monospace;
+}
+.bottom-align {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.bottom-align .ion-col {
+  display: flex;
+  justify-content: flex-end;
+}
+.required-asterisk {
+  color: red;
+}
+.custom-heading{
+  font-family: 'GalanoGrotesque';
+  font-size: 45px;
+  color: var(--copper-color);
+  padding-left: 30px;
+}
+.header-logo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 5%;
+}
+.user-agreements {
+  background-image: url('../src/assets/images/useragreement.jpg');
+}
+.forgot-password {
+  background-image: url('../src/assets/images/ForgotPasswordImage.jpeg');
+}
+.bg {
+  display: flex;
+  flex-direction: column;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+.custom-button {
+  --background: white;
+  --color: rgba(184, 97, 37, 1);
+  font-weight: bold;
+}
+.button-container {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+
+

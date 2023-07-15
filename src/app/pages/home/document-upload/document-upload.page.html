@@ -1,0 +1,26 @@
+<nu-header></nu-header>
+<ion-content>
+    <div class="container">
+        <div class="ion-padding ion-margin">
+            <h3 class="heading-copper-label">Upload Documents</h3>
+        </div>
+        <ion-card>
+            <ion-item>
+                <ion-label>Upload File</ion-label>
+                <ion-input type="file" accept=".pdf" (change)="onFileSelected($event)"></ion-input>
+            </ion-item>
+
+            <ion-button expand="full" shape="round" color="primary" routerLink="../document-list"
+                [queryParams]="{ buttonClicked: 'taxIdButton' }" *ngIf="fileChosen">Upload</ion-button>
+        </ion-card>
+
+        <ion-grid class="ion-padding">
+            <ion-button shape="round" expand="full" class="ion-margin">Open Camera & Take Photo</ion-button>
+            <div class="bottom-align ion-padding">
+                <ion-fab-button size="large" class="circular-button" routerLink="/home">
+                    <span class="button-text">&lt;</span>
+                </ion-fab-button>
+            </div>
+        </ion-grid>
+    </div>
+</ion-content>

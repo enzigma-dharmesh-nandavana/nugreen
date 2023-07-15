@@ -1,0 +1,6 @@
+<ion-app>
+  <ion-router-outlet></ion-router-outlet>
+  <div class="spinner-container" [style.margin-top]="topMargin" *ngIf="showSpinner">
+    <ion-spinner [color]="color" class="ion-small"></ion-spinner>
+  </div>
+</ion-app>

@@ -1,0 +1,119 @@
+<nu-header></nu-header>
+<ion-content>
+  <div class="content-container">
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center p-1 m-1">Trade - Invoice 101</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>Representative Name</ion-col>
+            <ion-col class="ion-text-end">John Doe</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Total amount(excl. taxes)</ion-col>
+            <ion-col class="ion-text-end">$ 1760</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Status</ion-col>
+            <ion-col class="ion-text-end">Paid</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Quantity</ion-col>
+            <ion-col class="ion-text-end">100</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Total Weight</ion-col>
+            <ion-col class="ion-text-end">568 Pounds</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Material Type</ion-col>
+            <ion-col class="ion-text-end">Whole System</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Material Sub-Type</ion-col>
+            <ion-col class="ion-text-end">Computer</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Number of items</ion-col>
+            <ion-col class="ion-text-end">3</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Created On</ion-col>
+            <ion-col class="ion-text-end">15-06-2023</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Shipments</ion-col>
+            <ion-col class="ion-text-end">3 Shipments - (By Client)</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Item List</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>Item Name</ion-col>
+            <ion-col class="ion-text-end">Quantity</ion-col>
+          </ion-row>
+          <ion-row *ngFor="let item of itemList">
+            <ion-col>{{ item.Name }}</ion-col>
+            <ion-col class="ion-text-end">{{ item.quantity }}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card-title class="ion-text-center p-1 m-1">Shipment Details</ion-card-title>
+
+    <ion-card *ngFor="let shipment of shipingList">
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">{{ shipment.Name }}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>Loading Dock Number</ion-col>
+            <ion-col class="ion-text-end">{{ shipment.Carrier_Name__c }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Transport Partner</ion-col>
+            <ion-col class="ion-text-end">{{ shipment.loadingDockNo }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Tracking Number</ion-col>
+            <ion-col class="ion-text-end">{{ shipment.Tracking_Number__c }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Scheduled Pickup Date</ion-col>
+            <ion-col class="ion-text-end">{{ shipment.Shipping_Date__c }}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <div class="ion-padding">
+      <ion-row class="ion-justify-content-between">
+        <ion-col size="6">
+          <ion-button shape="round" size="full" routerLink="/home/account-notes"><span class="button-text">Account Notes</span></ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button shape="round" size="full" routerLink="/bol-history"><span class="button-text">BoL History</span></ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-button size="large" shape="round" class="circular-button ion-float-start"
+          routerLink="/home/account-history">&lt;</ion-button>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>

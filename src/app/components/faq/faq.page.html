@@ -1,0 +1,19 @@
+<div class="ion-padding">
+  <h3 class="ion-margin-top ion-padding">Frequently Asked Questions:</h3>
+  <ion-searchbar [value]="searchQuery" (ionInput)="filterFaqs($event)" placeholder="Search"></ion-searchbar>
+
+  <ion-text>
+    <h4 class="ion-text-center">Questions related to Nugreen</h4>
+  </ion-text>
+  <ion-list class="ion-margin-top">
+    <ion-item *ngFor="let faq of filteredFaqs">
+      <ion-label class="ion-text-wrap">{{ faq.question }}</ion-label>
+      <ion-button [fill]="faq.isOpen ? 'solid' : 'clear'" (click)="toggleAnswer(faq)">
+        <ion-icon [name]="faq.isOpen ? 'caret-up' : 'caret-down'"></ion-icon>
+      </ion-button>
+      <ion-text class="answer" [class.hide-answer]="!faq.isOpen">
+        <ng-container *ngIf="faq.isOpen">{{ faq.answer }}</ng-container>
+      </ion-text>
+    </ion-item>
+  </ion-list>
+</div>

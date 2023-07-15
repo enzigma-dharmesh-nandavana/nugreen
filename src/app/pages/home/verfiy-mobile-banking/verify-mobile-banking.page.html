@@ -1,0 +1,13 @@
+<nu-header></nu-header>
+<ion-content>
+  <div class="container">
+    <h3 class="ion-text-center">* Enter your registered Email-id or Mobile Number</h3>
+    <div>
+      <ion-input type="number" (ngModel)="registeredEmailMobile" pattern="[0-9]{9}" placeholder="Enter email or mobile"
+        required></ion-input>
+    </div>
+    <div class="ion-padding-top">
+      <ion-button routerLink="/home/banking-information" type="submit" shape="round">Submit</ion-button>
+    </div>
+  </div>
+</ion-content>

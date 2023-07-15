@@ -1,0 +1,216 @@
+<nu-header></nu-header>
+<ion-content>
+    <div class="content-container">
+        <ng-template [ngIf]="!company.isVerified">
+            <ion-text class="ion-text-center">
+                <h2 class="heading-copper-label">COMPLETE YOUR COMPANY PROFILE</h2>
+            </ion-text>
+            <ion-list class="ion-margin">
+                <ion-item class="ion-margin-top">
+                    <ion-label position="stacked"><span class="required-asterisk">*</span> FULL LEGAL NAME OF
+                        BUSINESS</ion-label>
+                    <ion-input placeholder="Enter Full Legal Name" type="text"
+                        [value]="company.Full_Legal_Name_Of_Business__c" (ionChange)="handleBusinessName($event)"
+                        [clearOnEdit]="true" required="true">
+                    </ion-input>
+                </ion-item>
+
+                <ion-item class="ion-margin-top">
+                    <ion-label position="stacked"><span class="required-asterisk">*</span> DBA (DOING BUSINESS
+                        AS)</ion-label>
+                    <ion-input placeholder="Enter your DBA" type="text" [value]="company.Doing_Business_As__c"
+                        (ionChange)="handleDba($event)" [clearOnEdit]="true" required="true">
+                    </ion-input>
+                </ion-item>
+
+                <ion-item class="ion-margin-top">
+                    <ion-label position="stacked"><span class="required-asterisk">*</span> ORGANIZATION TYPE</ion-label>
+                    <ion-radio-group [value]="company.Organization_Type__c" (ionChange)="handleOrgType($event)"
+                        required="true">
+                        <ion-item>
+                            <ion-radio slot="start" value="recycler" labelPlacement="start"></ion-radio>
+                            <ion-label>Recycler</ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-radio slot="start" value="OEM" labelPlacement="start"></ion-radio>
+                            <ion-label>OEM</ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-radio slot="start" value="dataCenter" labelPlacement="start"></ion-radio>
+                            <ion-label>Data Center</ion-label>
+                        </ion-item>
+                    </ion-radio-group>
+                </ion-item>
+
+                <ion-item class="ion-margin-top">
+                    <ion-label position="stacked"><span class="required-asterisk">*</span> BUSINESS PHONE</ion-label>
+                    <ion-input placeholder="Enter your business phone" type="text" [value]="company.Phone"
+                        (ionChange)="handlePhone($event)" [clearOnEdit]="true" required="true">
+                    </ion-input>
+                </ion-item>
+
+                <ion-item class="ion-margin-top">
+                    <ion-label position="stacked"><span class="required-asterisk">*</span> DO YOU HAVE LOADING
+                        DOCK</ion-label>
+                    <ion-radio-group [value]="company.Do_you_have_loading_dock__c"
+                        (ionChange)="handleLoadingDock($event)" required="true">
+                        <ion-item>
+                            <ion-radio slot="start" value="true" labelPlacement="start"></ion-radio>
+                            <ion-label>Yes</ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-radio slot="start" value="false" labelPlacement="start"></ion-radio>
+                            <ion-label>No</ion-label>
+                        </ion-item>
+                    </ion-radio-group>
+                </ion-item>
+
+                <ion-item class="ion-margin-top">
+                    <ion-label position="stacked">FEDERAL EIN</ion-label>
+                    <ion-input type="number" [value]="company.Federal_EIN__c" readonly="true" required="true">
+                    </ion-input>
+                </ion-item>
+
+                <ion-item class="ion-margin-top">
+                    <ion-label position="stacked"><span class="required-asterisk">*</span>STATE OF
+                        INCORPORATION</ion-label>
+                    <ion-input [value]="company.State_of_Incorporation__c" (ionChange)="handleStateInc($event)"
+                        placeholder="Enter your state of incorporation" type="text"
+                        value="{{ company.State_of_Incorporation__c }}" [clearOnEdit]="true" required="true">
+                    </ion-input>
+                </ion-item>
+
+                <ion-item class="ion-margin-top">
+                    <ion-label position="stacked"><span class="required-asterisk">*</span>SALES TAX NUMBER</ion-label>
+                    <ion-input placeholder="Enter your sales tax number" type="number"
+                        [value]="company.Sales_Tax_Number__c" (ionChange)="handleSalesTaxNumber($event)"
+                        [clearOnEdit]="true" required="true">
+                    </ion-input>
+                </ion-item>
+                <div class="ion-margin-top ion-text-end">
+                    <ion-button type="button" size="large" shape="round" routerLink="/home/documents"
+                        (click)="onSubmit()">&gt;</ion-button>
+                </div>
+
+            </ion-list>
+        </ng-template>
+
+        <!-- USER IS VERIFIED -->
+        <ng-template [ngIf]="company.isVerified">
+            <ion-text class="ion-text-center">
+                <h2 class="heading-copper-label">COMPANY PROFILE</h2>
+            </ion-text>
+            <ion-list class="ion-margin">
+                <ion-item class="ion-margin-top">
+                    <ion-label position="stacked">FULL LEGAL NAME OF BUSINESS</ion-label>
+                    <ion-input value={{company.Full_Legal_Name_Of_Business__c}} (ionChange)="handleBusinessName($event)"
+                        type="text" required="true" [readonly]="! editMode">
+                    </ion-input>
+                    <ion-icon class="ion-padding" name="pencil" slot="end" *ngIf="!editMode"
+                        (click)="toggleEditMode()"></ion-icon>
+                </ion-item>
+
+                <ion-item class="ion-margin-top">
+                    <ion-label position="stacked"> DBA (DOING BUSINESS AS)</ion-label>
+                    <ion-input value={{company.Doing_Business_As__c}} (ionChange)="handleDba($event)" type="text"
+                        required="true" [readonly]="! editMode">
+                    </ion-input>
+                    <ion-icon class="ion-padding" name="pencil" slot="end" *ngIf="!editMode"
+                        (click)="toggleEditMode()"></ion-icon>
+                </ion-item>
+
+                <ion-item class="ion-margin-top">
+                    <ion-label position="stacked">ORGANIZATION TYPE</ion-label>
+                    <ion-radio-group [value]="company.Organization_Type__c" (ionChange)="handleOrgType($event)"
+                        required="true">
+                        <ion-item>
+                            <ion-radio slot="start" value="recycler" labelPlacement="start"
+                                [disabled]="! editMode"></ion-radio>
+                            <ion-label>Recycler</ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-radio slot="start" value="OEM" labelPlacement="start"
+                                [disabled]="! editMode"></ion-radio>
+                            <ion-label>OEM</ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-radio slot="start" value="dataCenter" labelPlacement="start"
+                                [disabled]="! editMode"></ion-radio>
+                            <ion-label>Data Center</ion-label>
+                        </ion-item>
+                    </ion-radio-group>
+                </ion-item>
+
+
+                <ion-item class="ion-margin-top">
+                    <ion-label position="stacked"> BUSINESS PHONE</ion-label>
+                    <ion-input type="text" value="{{ company.Phone }}" (ionChange)="handlePhone($event)"
+                        required="true">
+                    </ion-input>
+                    <ion-icon class="ion-padding" name="pencil" slot="end" *ngIf="!editMode"
+                        (click)="toggleEditMode()"></ion-icon>
+                </ion-item>
+
+                <ion-item class="ion-margin-top">
+                    <ion-label position="stacked">DO YOU HAVE LOADING DOCK</ion-label>
+                    <ion-radio-group value={{company.Do_you_have_loading_dock__c}}
+                        (ionChange)="handleLoadingDock($event)" required="true">
+                        <ion-item>
+                            <ion-radio slot="start" value="true" labelPlacement="start"
+                                [disabled]="! editMode"></ion-radio>
+                            <ion-label>Yes</ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-radio slot="start" value="false" labelPlacement="start"
+                                [disabled]="! editMode"></ion-radio>
+                            <ion-label>No</ion-label>
+                        </ion-item>
+                    </ion-radio-group>
+                </ion-item>
+
+                <ion-item class="ion-margin-top">
+                    <ion-label position="stacked">STATE OF INCORPORATION</ion-label>
+                    <ion-input type="text" value="{{ company.State_of_Incorporation__c }}" required="true">
+                    </ion-input>
+                    <ion-icon class="ion-padding" name="pencil" slot="end" *ngIf="!editMode"
+                        (click)="toggleEditMode()"></ion-icon>
+                </ion-item>
+
+                <ion-item class="ion-margin-top">
+                    <ion-label position="stacked">SALES TAX NUMBER</ion-label>
+                    <ion-input type="number" value="{{ company.Sales_Tax_Number__c }}"
+                        (ionChange)="handleStateInc($event)" required="true">
+                    </ion-input>
+                    <ion-icon class="ion-padding" name="pencil" slot="end" *ngIf="!editMode"
+                        (click)="toggleEditMode()"></ion-icon>
+                </ion-item>
+
+                <ion-item class="ion-margin-top" *ngIf="!editMode">
+                    <ion-label position="stacked">FEDERAL EIN</ion-label>
+                    <ion-input type="number" [value]="company.Federal_EIN__c" readonly="true">
+                    </ion-input>
+                </ion-item>
+                <ion-item class="ion-margin-top" *ngIf="!editMode">
+                    <ion-label position="stacked">VENDOR NUMBER</ion-label>
+                    <ion-input type="text" [value]="company.Vendor_Number__c" readonly="true">
+                    </ion-input>
+                </ion-item>
+
+                <div class="ion-margin-top ion-text-end" *ngIf="editMode">
+                    <ion-button type="button" routerLink="/home/company-profile/upload-documents"
+                        (click)="onSave()">Save</ion-button>
+                </div>
+
+                <div class="ion-margin-top" *ngIf="!editMode">
+                    <ion-button expand="full" shape="round" type="button" routerLink="/home/banking-information">BANKING
+                        INFORMATION</ion-button>
+                </div>
+                <div class="ion-margin-top" *ngIf="!editMode">
+                    <ion-button expand="full" shape="round" type="button" routerLink="/home/documents">COMPLAINCE
+                        DOCUMENTS</ion-button>
+                </div>
+
+            </ion-list>
+        </ng-template>
+    </div>
+</ion-content>

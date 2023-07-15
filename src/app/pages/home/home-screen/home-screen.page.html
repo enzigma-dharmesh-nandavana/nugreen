@@ -1,0 +1,39 @@
+<nu-header></nu-header>
+<ion-content [scrollEvents]="false" [fullscreen]="true" class="container">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+
+        <div *ngIf="company.underVerification">
+          <ion-text color="medium">
+            <h3 class="ion-text-center">Verification of documents is in the process</h3>
+          </ion-text>
+        </div>
+
+        <div *ngIf="company.documentRejected">
+          <ion-text color="danger">
+            <h3 class="ion-text-center">Document rejected,upload again.</h3>
+          </ion-text>
+        </div>
+
+        <div *ngIf="!company.isVerified">
+          <ion-button expand="full" shape="round" [routerLink]="['/home/verify-federal-ein']">COMPANY PROFILE
+          </ion-button>
+        </div>
+
+        <div>
+          <ion-button expand="full" shape="round" [disabled]="!company.isVerified"
+            [routerLink]="['/home/account-history']">ACCOUNT HISTORY
+          </ion-button>
+        </div>
+
+        <div>
+          <ion-button expand="full" shape="round" [disabled]="!company.isVerified"
+            [routerLink]="['/payment-history']">PAYMENT HISTORY
+          </ion-button>
+        </div>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

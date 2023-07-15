@@ -1,0 +1,21 @@
+<nu-header></nu-header>
+<ion-content class="container">
+    
+    <ion-text class="ion-text-center">
+        <h2>Uploaded Document</h2>
+      </ion-text>
+    <ion-card class="ion-margin">
+        <ion-card-content>
+            <a class="list-group-item" *ngIf="isTaxIdDocumentVisible">Tax ID Document.pdf</a>
+            <a class="list-group-item" *ngIf="isW9DocumentVisible">W9 Document.pdf</a>
+        </ion-card-content>
+    </ion-card>     
+    <ion-grid class="ion-padding">
+      <div class="bottom-align ion-padding">
+        <ion-fab-button size="large" class="circular-button" routerLink="/home/documents">
+          <span class="button-text">&lt;</span>
+        </ion-fab-button>
+      </div>
+      </ion-grid>
+
+</ion-content>

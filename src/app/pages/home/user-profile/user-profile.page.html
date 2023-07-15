@@ -1,0 +1,81 @@
+<div class="ion-padding">
+  <div class="ion-text-center">
+    <h4>User Profile</h4>
+  </div>
+
+  <div class="ion-margin-top">
+    <ion-label position="stacked">
+      USERNAME
+    </ion-label>
+    <ion-item>
+      <ion-input value="username@nugreen.com" [readonly]="true"></ion-input>
+    </ion-item>
+  </div>
+
+  <div class="ion-margin-top">
+    <ion-label position="stacked">
+      FIRST NAME
+    </ion-label>
+    <ion-item>
+      <ion-input type="text" value="NUgreen"></ion-input>
+      <ion-icon name="pencil-outline" slot="end"></ion-icon>
+
+    </ion-item>
+  </div>
+
+  <div class="ion-margin-top">
+    <ion-label position="stacked">
+      LAST NAME
+    </ion-label>
+    <ion-item>
+      <ion-input type="text" value="Metals"></ion-input>
+      <ion-icon name="pencil-outline" slot="end"></ion-icon>
+    </ion-item>
+  </div>
+
+  <div class="ion-margin-top">
+    <ion-label position="stacked">
+      PHONE
+    </ion-label>
+    <ion-item>
+      <ion-input type="number" value="65672731731"></ion-input>
+      <ion-icon name="pencil-outline" slot="end"></ion-icon>
+    </ion-item>
+  </div>
+
+  <div class="ion-margin-top">
+    <ion-label position="stacked">
+      EMAIL
+    </ion-label>
+    <ion-item>
+      <ion-input type="email" value="65672731731"></ion-input>
+    </ion-item>
+  </div>
+
+  <div class="ion-margin-top">
+    <ion-label position="stacked" class="ion-text-wrap">PREFERRED METHOD OF COMMUNICATION</ion-label>
+      <ion-item class="ion-margin-top">
+      <ion-radio-group value="Email">
+        <ion-item>
+          <ion-radio slot="start" value="Email" labelPlacement="start"></ion-radio>
+          <ion-label>Email</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-radio slot="start" value="Call" labelPlacement="start"></ion-radio>
+          <ion-label>Call</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-radio slot="start" value="Text" labelPlacement="start"></ion-radio>
+          <ion-label>Text</ion-label>
+        </ion-item>
+      </ion-radio-group>
+    </ion-item>
+  </div>  
+
+  <div class="ion-text-center ion-margin-top">
+    <ion-button shape="round" color="primary">
+      change Password
+    </ion-button>
+  </div>
+
+</div>

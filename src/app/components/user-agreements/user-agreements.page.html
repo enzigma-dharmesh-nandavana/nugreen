@@ -1,0 +1,29 @@
+<ion-card>
+  <div class="ion-padding">
+    <h3 class="ion-text-center copper-label">{{ currentAgreement.title }}</h3>
+    <ion-text>{{ currentAgreement.content }}</ion-text> <br>
+    <ion-radio-group [(ngModel)]="contact[currentAgreement.apiName]" (ionChange)="checkValue($event, currentIndex)">
+      <ion-radio class="ion-padding-start ion-padding-top" slot="start" value="true"
+        labelPlacement="end">Agree</ion-radio> <br>
+      <ion-radio class="ion-padding-start ion-padding-top" slot="start" value="false"
+        labelPlacement="end">Disagree</ion-radio>
+    </ion-radio-group> <br>
+    <ion-text class="ion-padding-start ion-text-align-start" color="danger" *ngIf="showErrorMessage">Please agree to continue</ion-text>
+  </div>
+</ion-card>
+<ion-row class=" bottom-align ion-padding ion-justify-content-between ion-align-items-end">
+  <ion-col size="auto">
+    <ion-fab-button size="large" *ngIf="currentIndex > 0" size="large" class="circular-button" (click)="goBack()">
+      <span class="button-text">&lt;</span>
+    </ion-fab-button>
+  </ion-col>
+  <ion-col size="auto">
+    <ion-fab-button class="ion-float-end" size="large" *ngIf="currentIndex < agreements.length - 1"
+      class="circular-button" (click)="goNext(currentIndex)" [disabled]="disableNext">&gt;
+    </ion-fab-button>
+    <ion-button [disabled]="disableNext" size="large" shape="round" *ngIf="!(currentIndex < agreements.length - 1)"
+      (click)="goNext(currentIndex)">
+      <span class="button-text">Submit</span>
+    </ion-button>
+  </ion-col>
+</ion-row>

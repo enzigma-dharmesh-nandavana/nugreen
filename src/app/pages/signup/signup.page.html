@@ -1,0 +1,27 @@
+<nu-header></nu-header>
+<ion-content [ngSwitch]="page">
+  <div *ngSwitchCase="'email'" class="container">
+    <verify-email [contact]="contact" (data)="checkEmailIsExist($event)"></verify-email>
+  </div>
+
+  <div *ngSwitchCase="'verification'" class="container">
+    <verification (onBack)="backTo('email')" [user]="user" (data)="verifyCode($event)"></verification>
+  </div>
+
+  <div *ngSwitchCase="'userData'" class="content-container">
+    <tell-us-about-yourself [contact]="contact" (data)="setUserData($event, 'howCanWeHelp')"></tell-us-about-yourself>
+  </div>
+
+  <div *ngSwitchCase="'howCanWeHelp'" class="content-container">
+    <how-can-we-help [contact]="contact" (data)="setUserData($event, 'usernamePassword')"
+      (onBack)="backTo('userData')"></how-can-we-help>
+  </div>
+
+  <div *ngSwitchCase="'usernamePassword'" class="content-container">
+    <username-password [user]="user" (register)="onRegister()" (onBack)="backTo('howCanWeHelp')"></username-password>
+  </div>
+
+  <div *ngSwitchCase="'userAgreements'" class="content-container">
+    <user-agreements [contact]="contact" (submit)="onSubmit()"></user-agreements>
+  </div>
+</ion-content>

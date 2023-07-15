@@ -1,0 +1,27 @@
+<!-- <nu-header></nu-header> -->
+<div class="ion-text-center">
+  <h2 class="heading-copper-label">Verify Code</h2>
+  <div class="ion-margin-top ion-input-box">
+    <ion-input type="number" name="code" [formControl]="codeControl" placeholder="Enter code"
+      [(ngModel)]="user.codeInt"></ion-input>
+  </div>
+  <div class="ion-margin-top ion-text-center" *ngIf="errormessage">
+    <ion-text color="danger"> {{ errormessage }} </ion-text>
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">Didn't receive a code ? <a class="copper-label" color="primary"
+          (click)="reSendCode()">ResendCode</a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class=" ion-margin-top ion-text-center">
+    <ion-button [disabled]="!codeControl.value" shape="round" (click)="onVerify()"> Verify
+    </ion-button>
+  </div>
+</div>
+<div class="bottom-align ion-padding">
+  <ion-fab-button size="large" class="circular-button" (click)=handleBack()>
+    <span class="button-text">&lt;</span>
+  </ion-fab-button>
+</div>
