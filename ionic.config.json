@@ -1,0 +1,7 @@
+{
+  "name": "Nugreen Metals",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
