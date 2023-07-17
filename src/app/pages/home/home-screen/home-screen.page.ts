@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Company } from 'src/app/models/models';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'home-screen',
@@ -9,7 +9,14 @@ import { Company } from 'src/app/models/models';
 })
 export class HomeScreenPage implements OnInit {
   company = new Company();
-  constructor(private router: ActivatedRoute) { }
-  ngOnInit() {
+
+  constructor(private userService: UserService) {
+    console.log('INIT HOME-SCREEN');
+    this.userService.emitCompany();
+    this.userService.onCompanyUpdated.subscribe((data: any) => {
+      console.log('DATA HOME-SCREEN ', data);
+      this.company = data;
+    });
   }
+  ngOnInit() { }
 }

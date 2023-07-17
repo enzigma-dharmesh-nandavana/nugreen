@@ -41,7 +41,23 @@ export class LoginPage implements OnInit {
         this.isMfaRequired = result.data.isCodeRequired;
         this.user.verificationCodeId = result.data.verificationCodeId;
         this.user.email = this.user.userName;
-        //this.componentService.showToaster(result.message);
+        this.engine.sendCode(this.user.email as string).then((result: Result) => {
+          if (result.success) {
+            this.componentService.showToaster(result.message, Color.success).then(() => {
+              setTimeout(() => {
+                this.router.navigate(['/login']);
+              }, 1000);
+            })
+            this.user.verificationCodeId = result.data.verificationCodeId;
+            this.user.email = this.contact.Email;
+          } else {
+            this.componentService.showToaster(result.message, Color.danger)
+          }
+          this.componentService.hideSpinner()
+        }).catch((ex) => {
+          this.componentService.hideSpinner()
+          this.componentService.showToaster(ex.message, Color.danger)
+        })
       } else {
         this.componentService.showToaster(result.message, Color.danger)
       }

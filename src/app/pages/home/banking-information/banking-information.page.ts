@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Company } from 'src/app/models/models';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-banking-information',
@@ -11,16 +13,25 @@ export class BankingInformationPage implements OnInit {
   company = new Company();
   editMode = false;
 
-  constructor(private router: Router) {}
+  bankNameControl: FormControl;
+  accountHolderNameControl: FormControl;
+  paymentMethodControl: FormControl;
+  routingNumberControl: FormControl;
+  accountNumberControl: FormControl;
+  constructor(private router: Router,private userService: UserService) {
+    this.bankNameControl = new FormControl('', Validators.pattern(/^[a-zA-Z\s]+$/));
+    this.accountHolderNameControl = new FormControl('', Validators.pattern(/^[a-zA-Z\s]+$/));
+    this.paymentMethodControl = new FormControl('', Validators.required);
+    this.routingNumberControl = new FormControl('', [Validators.required, Validators.pattern(/^\d+$/), Validators.minLength(9), Validators.maxLength(9)]);
+    this.accountNumberControl = new FormControl('', [Validators.required, Validators.pattern(/^\d+$/), Validators.minLength(8), Validators.maxLength(12)]);
+  }
   ngOnInit() {
-    if (this.company.isVerified) {
-      this.company.Bank_Name__c = 'Silicon Valley Bank';
-      this.company.Account_Holder_Name__c = 'John Doe';
-      this.company.Account_Number__c = '1234567890';
-      this.company.Routing_Number__c = '999999999';
-      this.company.Payment_Method__c = 'ACH';
-      this.editMode = false;
-    }
+    console.log('INIT BANKING');
+    this.userService.emitCompany();
+    this.userService.onCompanyUpdated.subscribe((data : any) => {
+      console.log('DATA BANKING ',data);
+      this.company = data;
+    });
   }
 
   toggleEditMode() {
@@ -30,34 +41,17 @@ export class BankingInformationPage implements OnInit {
     }
   }
 
-  handleBankName($event: any) {
-    this.company.Bank_Name__c = $event.target.value;
-  }
-  handleAccountHolderName($event: any) {
-    this.company.Account_Holder_Name__c = $event.target.value;
-  }
-  handleAccountNumber($event: any) {
-    this.company.Account_Number__c = $event.target.value;
-  }
-  handleRoutingNumber($event: any) {
-    this.company.Routing_Number__c = $event.target.value;
-  }
-  handlePaymentMethod($event: any) {
-    this.company.Payment_Method__c = $event.target.value;
-  }
-
-  onSubmit() {
-    console.log('Submit button clicked');
-    console.log('Banking Name = ', this.company.Bank_Name__c);
-    console.log('Account_Holder_Name__c = ', this.company.Account_Holder_Name__c);
-    console.log('Account_Number__c  = ', this.company.Account_Number__c);
-    console.log('Routing_Number__c  = ', this.company.Routing_Number__c);
-    console.log('Payment_Method__c  = ', this.company.Payment_Method__c);
-    this.editMode = false;
-    this.company.underVerification = true;
+  onNext() {
     this.router.navigate(['/home']);
   }
   onBack() {
+    console.log('on back');
+    
+    this.editMode = false;
+      this.router.navigate(['home/company-profile'])
+  }
+  onSave(){
+    console.log('On Save', this.company); 
     this.editMode = false;
   }
 }

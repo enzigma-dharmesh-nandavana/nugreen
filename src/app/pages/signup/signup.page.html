@@ -5,7 +5,8 @@
   </div>
 
   <div *ngSwitchCase="'verification'" class="container">
-    <verification (onBack)="backTo('email')" [user]="user" (data)="verifyCode($event)"></verification>
+    <verification (onBack)="backTo('email')" [user]="user" (data)="verifyCode($event)" (resendCode)="reSendCode()">
+    </verification>
   </div>
 
   <div *ngSwitchCase="'userData'" class="content-container">
@@ -17,11 +18,8 @@
       (onBack)="backTo('userData')"></how-can-we-help>
   </div>
 
-  <div *ngSwitchCase="'usernamePassword'" class="content-container">
-    <username-password [user]="user" (register)="onRegister()" (onBack)="backTo('howCanWeHelp')"></username-password>
-  </div>
+  <username-password *ngSwitchCase="'usernamePassword'" [user]="user"
+    (register)="onRegister()" (onBack)="backTo('howCanWeHelp')"></username-password>
 
-  <div *ngSwitchCase="'userAgreements'" class="content-container">
-    <user-agreements [contact]="contact" (submit)="onSubmit()"></user-agreements>
-  </div>
+  <user-agreements [contact]="contact" (submit)="onSubmit()" *ngSwitchCase="'userAgreements'"></user-agreements>
 </ion-content>

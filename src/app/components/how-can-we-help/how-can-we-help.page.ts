@@ -13,9 +13,7 @@ export class HowCanWeHelpPage {
   selectedOptions: string[] = ["sell"];
   errorMessage: string = '';
 
-  constructor() { 
-    this.contact.How_can_we_help__c = this.selectedOptions[0]; 
-  }
+  
 
   setData(event: any, fieldName: string) {
     this.errorMessage = "";
@@ -37,6 +35,10 @@ export class HowCanWeHelpPage {
     if (this.selectedOptions.length == 0) {
       this.errorMessage = "Please select at least one option to continue";
     } else {
+      if(!this.contact.How_can_we_help__c){
+        this.contact.How_can_we_help__c = 'sell';
+      }
+      console.log('CON : ', this.contact);
       this.data.emit(this.contact);
     }
   }

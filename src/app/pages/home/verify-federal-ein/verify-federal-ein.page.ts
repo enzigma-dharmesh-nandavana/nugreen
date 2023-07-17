@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Company } from 'src/app/models/models';
 
@@ -8,7 +8,7 @@ import { Company } from 'src/app/models/models';
   templateUrl: './verify-federal-ein.page.html',
   styleUrls: ['./verify-federal-ein.page.scss'],
 })
-export class VerifyFederalEin implements OnInit {
+export class VerifyFederalEin {
   company = new Company();
 
   federalEinInvalid: boolean = false;
@@ -17,22 +17,26 @@ export class VerifyFederalEin implements OnInit {
   showDuplicateScreen: boolean = false;
   showDuplicateScreenYes: boolean = false;
   showDuplicateScreenNo: boolean = false;
+  disableSubmit : boolean = true;
+  errormessage = '';
+  einControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern(/^\d{9}$/)
+  ]);
 
-  constructor(private router: Router, private formBuilder: FormBuilder) { }
-  form!: FormGroup;
-  ngOnInit() { 
-    this.form = this.formBuilder.group({
-      field1: ['', Validators.required],
-      field2: ['', Validators.required],
-      field3: ['', Validators.required]
-    });
-  }
+  constructor(private router: Router) { }
+  onSubmit() { }
 
-  onSubmit() {
-    if (this.form.valid) {
-      console.log('Field 1 value:', this.form.value.field1);
-      console.log('Field 2 value:', this.form.value.field2);
-      console.log('Field 3 value:', this.form.value.field3);
+  checkEin() {
+    this.disableSubmit = true;
+    if (this.einControl && this.einControl.hasError('pattern')) {
+      this.errormessage = 'Invalid EIN'
+    }
+    else if (this.einControl.invalid) {
+      
+    } else {
+      this.errormessage = ''
+      this.disableSubmit = false;
     }
   }
 

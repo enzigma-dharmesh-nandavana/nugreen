@@ -1,6 +1,4 @@
 import { StatusCode } from "./enums";
-
-
 export class User {
     code?: string
     verificationCodeId?: string
@@ -52,6 +50,7 @@ export class Result {
 export class Company {
     Full_Legal_Name_Of_Business__c?: string;
     Vendor_Number__c?: string;
+    Verified__c = false;
 
     Doing_Business_As__c?: string;
     Organization_Type__c?: string;
@@ -68,7 +67,6 @@ export class Company {
     Routing_Number__c?: string;
     Payment_Method__c?: string;
 
-    isVerified = false;
     underVerification = false;
     documentRejected = false;
 }

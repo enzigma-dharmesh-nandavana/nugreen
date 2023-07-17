@@ -10,7 +10,8 @@ import { Contact } from 'src/app/models/models';
 export class TellUsAboutYourselfPage {
   @Input() contact = new Contact();
   @Output() data: EventEmitter<any> = new EventEmitter();
-  countryCode = '+1';
+  countryCode = '';
+  mobileNumber = '';
 
   firstNameControl: FormControl;
   lastNameControl: FormControl;
@@ -26,10 +27,19 @@ export class TellUsAboutYourselfPage {
     this.companyNameControl = new FormControl('', Validators.required);
     this.preferredCommunicationControl = new FormControl('', Validators.required);
     this.phoneControl = new FormControl('', [Validators.pattern(/^\d+$/), Validators.minLength(10)]);
-    this.mobileControl = new FormControl('', [Validators.required,Validators.pattern(/^\d+$/), Validators.minLength(10)]);
+    this.mobileControl = new FormControl('', [Validators.required, Validators.pattern(/^\d+$/), Validators.minLength(10)]);
     this.recyclingCompanyControl = new FormControl('', Validators.required);
   }
-
+  ngOnInit() {
+    console.log('CON : ', this.contact);
+    if (this.contact.MobilePhone) {
+      const [countryCode, mobileNumber] = this.contact.MobilePhone.split(' ');
+      this.countryCode = countryCode;
+      this.mobileNumber = mobileNumber;
+    } else {
+      this.countryCode = '+1';
+    }
+  }
   onNext() {
     if (
       this.firstNameControl.invalid ||
@@ -46,7 +56,7 @@ export class TellUsAboutYourselfPage {
       this.mobileControl.markAsDirty();
       this.recyclingCompanyControl.markAsDirty();
     } else {
-      this.contact.MobilePhone = this.countryCode + this.contact.MobilePhone;
+      this.contact.MobilePhone = this.countryCode + ' ' + this.mobileNumber;
       console.log(this.contact);
       this.data.emit(this.contact);
     }

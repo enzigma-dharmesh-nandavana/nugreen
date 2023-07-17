@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Company } from 'src/app/models/models';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'home',
@@ -7,9 +8,15 @@ import { Company } from 'src/app/models/models';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  company = new Company();
+  company: Company = new Company();
 
-  constructor() { }
-  ngOnInit() {
+  constructor(private userService: UserService) {
+    console.log('CONST HOME');
+    // this.userService.getCompanyProfile();
+    this.userService.onCompanyUpdated.subscribe((data: any) => {
+      console.log('DATA HOME', data);
+      this.company = data;
+    });
   }
+  ngOnInit() { }
 }

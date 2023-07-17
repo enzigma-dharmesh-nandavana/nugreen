@@ -8,16 +8,12 @@ import { AccountHistoryPage } from './pages/home/account-history/account-history
 import { VerifyFederalEin } from './pages/home/verify-federal-ein/verify-federal-ein.page';
 import { AccountHistoryDetailsPage } from './pages/home/account-history-details/account-history-details.page';
 
-import { VerifyEmailPage } from './components/verify-email/verify-email.page';
-import { VerificationPage } from './components/verification/verification.page';
 import { TellUsAboutYourselfPage } from './components/tell-us-about-yourself/tell-us-about-yourself.page';
 import { HowCanWeHelpPage } from './components/how-can-we-help/how-can-we-help.page';
 import { UsernamePasswordPage } from './components/username-password/username-password.page';
 import { UserAgreementsPage } from './components/user-agreements/user-agreements.page';
-import { VerificationSuccessfulPage } from './components/verification-successful/verification-successful.page';
 import { CompanyProfilePage } from './pages/home/company-profile/company-profile.page';
 import { HomePage } from './pages/home/home.page';
-import { UserProfilePage } from './pages/home/user-profile/user-profile.page';
 import { LoginPage } from './pages/login/login.page';
 import { SignUpPage } from './pages/signup/signup.page';
 import { StartPage } from './pages/start/start.page';
@@ -57,28 +53,12 @@ const routes: Routes = [
     component:UserAgreementsPage
   },
   {
-    path: 'bol-history',
-    component:BolHistoryPage
-  },
-  {
-    path: 'payment-history',
-    component:PaymentHistoryPage
-  },
-  {
-    path: 'faq',
-    component:FaqPage
-  },
-  {
     path: 'login',
     component: LoginPage
   },
   {
     path: 'forgot-password',
     component: ForgotPasswordPage
-  },
-  {
-    path: 'contact-your-rep',
-    component:ContactYourRepPage
   },
   {
     path: 'filter',
@@ -96,10 +76,6 @@ const routes: Routes = [
         path: '',
         component:SignUpPage,
       },
-      // {
-      //   path: 'verify-email',
-      //   component:VerifyEmailPage,
-      // },
     ]
   },
   {
@@ -109,6 +85,22 @@ const routes: Routes = [
       {
         path: '',
         component: HomeScreenPage
+      },
+      {
+        path: 'faq',
+        component:FaqPage
+      },
+      {
+        path: 'bol-history',
+        component:BolHistoryPage
+      },
+      {
+        path: 'contact-your-rep',
+        component:ContactYourRepPage
+      },
+      {
+        path: 'payment-history',
+        component:PaymentHistoryPage
       },
       {
         path: 'account-history',
@@ -124,7 +116,7 @@ const routes: Routes = [
       },
       {
         path: 'user-profile',
-        component: UserProfilePage
+        component: TellUsAboutYourselfPage
       },
       {
         path: 'company-profile',

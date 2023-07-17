@@ -1,70 +1,37 @@
-<nu-header></nu-header>
-<ion-content>
-  <div class="container">
-    <div class="ion-padding ion-margin" *ngIf="showEinScreen">
-      <h3><span class="required-asterisk">* </span>FEDERAL EIN</h3>
-      <ion-input type="number" [value]="company.Federal_EIN__c" (ionChange)="handleFederalEin($event)"
-        pattern="[0-9]{9}" placeholder="Enter Federal Ein" required></ion-input>
-      <!-- ERRORS -->
-      <ion-text class="ion-text-align-start" color="danger" *ngIf="federalEinInvalid">Invalid Federal EIN.</ion-text>
-      <ion-text class="ion-text-align-start" color="danger" *ngIf="federalEinRequired">Federal EIN is
-        required.</ion-text>
+<div class="home-content">
+  <div class="ion-padding ion-margin ion-text-center" *ngIf="showEinScreen">
+    <h3 class="heading-copper-label required-field">FEDERAL EIN</h3>
+    <ion-input type="number" [formControl]="einControl" [(ngModel)]="company.Federal_EIN__c" (ionInput)="checkEin()"
+      placeholder="Enter Federal Ein"></ion-input>
+    <!-- ERRORS -->
+    <ion-text class="ion-text-align-start" color="danger"
+      *ngIf="!(einControl.valid && einControl.dirty)">{{errormessage}}</ion-text>
 
-      <div class="ion-padding-top ion-text-align-center">
-        <ion-button type="submit" expand="full" shape="round" (click)="submitEin()">Submit</ion-button>
-      </div>
+    <div class="ion-padding-top ion-text-align-center">
+      <ion-button type="submit" shape="round" [disabled]="(!(einControl.valid && einControl.dirty))" (click)="submitEin()">Submit</ion-button>
     </div>
-    <!-- DUPLICATE EIN -->
-    <div *ngIf="showDuplicateScreen">
-      <div class="ion-padding ion-margin">
-        <ion-text class="ion-text-center" color="danger">
-          The entered EIN is already registered with us. Would you like to notify the primary user associated with your
-          company?
-        </ion-text>
-        <ion-grid class="ion-padding">
-          <ion-row class="ion-justify-content-between">
-            <ion-col size="6">
-              <ion-button shape="round" size="full" (click)="onYesClick()"><span
-                  class="button-text">Yes</span></ion-button>
-            </ion-col>
-            <ion-col size="6">
-              <ion-button shape="round" size="full" (click)="onNoClick()"><span
-                  class="button-text">No</span></ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </div>
-      <div>
-        <ion-grid class="ion-padding ion-align-start">
-          <div class="bottom-align ion-padding">
-            <ion-fab-button size="large" class="circular-button" routerLink="/home">
-              <span class="button-text">&lt;</span>
-            </ion-fab-button>
-          </div>
-        </ion-grid>
-      </div>
-    </div>
-    <!-- YES TO SEND EMAIL -->
-    <div class="ion-padding ion-margin" *ngIf="showDuplicateScreenYes">
+  </div>
+  <!-- DUPLICATE EIN -->
+  <div *ngIf="showDuplicateScreen">
+    <div class="ion-padding ion-margin">
       <ion-text class="ion-text-center" color="danger">
-        We have sent an email to the business administrator associated with your company. Please reach out to them for
-        further assistance.
+        The entered EIN is already registered with us. Would you like to notify the primary user associated with your
+        company?
       </ion-text>
-
       <ion-grid class="ion-padding">
-        <div class="bottom-align ion-padding">
-          <ion-fab-button size="large" class="circular-button" routerLink="/home">
-            <span class="button-text">&lt;</span>
-          </ion-fab-button>
-        </div>
+        <ion-row class="ion-justify-content-between">
+          <ion-col size="6">
+            <ion-button shape="round" size="full" (click)="onYesClick()"><span
+                class="button-text">Yes</span></ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button shape="round" size="full" (click)="onNoClick()"><span class="button-text">No</span></ion-button>
+          </ion-col>
+        </ion-row>
       </ion-grid>
     </div>
-    <!-- NO TO SEND EMAIL -->
-    <div class="ion-padding ion-margin" *ngIf="showDuplicateScreenNo">
-      <ion-text class="ion-text-center" color="danger">
-        Since your EIN is already registered with us, please contact your business administrator for further assistance.
-      </ion-text>
-      <ion-grid class="ion-padding">
+    <div>
+      <ion-grid class="ion-padding ion-align-start">
         <div class="bottom-align ion-padding">
           <ion-fab-button size="large" class="circular-button" routerLink="/home">
             <span class="button-text">&lt;</span>
@@ -73,4 +40,32 @@
       </ion-grid>
     </div>
   </div>
-</ion-content>
+  <!-- YES TO SEND EMAIL -->
+  <div class="ion-padding ion-margin" *ngIf="showDuplicateScreenYes">
+    <ion-text class="ion-text-center" color="danger">
+      We have sent an email to the business administrator associated with your company. Please reach out to them for
+      further assistance.
+    </ion-text>
+
+    <ion-grid class="ion-padding">
+      <div class="bottom-align ion-padding">
+        <ion-fab-button size="large" class="circular-button" routerLink="/home">
+          <span class="button-text">&lt;</span>
+        </ion-fab-button>
+      </div>
+    </ion-grid>
+  </div>
+  <!-- NO TO SEND EMAIL -->
+  <div class="ion-padding ion-margin" *ngIf="showDuplicateScreenNo">
+    <ion-text class="ion-text-center" color="danger">
+      Since your EIN is already registered with us, please contact your business administrator for further assistance.
+    </ion-text>
+    <ion-grid class="ion-padding">
+      <div class="bottom-align ion-padding">
+        <ion-fab-button size="large" class="circular-button" routerLink="/home">
+          <span class="button-text">&lt;</span>
+        </ion-fab-button>
+      </div>
+    </ion-grid>
+  </div>
+</div>

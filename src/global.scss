@@ -23,9 +23,19 @@
   font-family: 'GalanoGrotesque';
   src: url('/assets/font/Galano Grotesque/Galano Grotesque.otf') format('opentype');
 }
+
+.user-agreements {
+  background-image: url('../src/assets/images/userAgreement.jpg');
+}
+
+.forgot-password {
+  background-image: url('../src/assets/images/ForgotPasswordImage.jpeg');
+}
+
 ion-content {
   font-family: 'GalanoGrotesque';
 }
+
 ion-button {
   font-family: 'GalanoGrotesque';
   --background: var(--blue-green-color);
@@ -34,47 +44,55 @@ ion-button {
   justify-content: center;
   align-items: center;
 }
-ion-label{
+
+ion-label {
   color: var(--copper-color);
   font-size: large;
   font-family: 'GalanoGrotesque';
 }
-ion-text{
+
+ion-text {
   font-family: 'GalanoGrotesque';
 }
-ion-card-content{
+
+ion-card-content {
   color: var(--blue-green-color);
 }
+
 .required-field::before {
   content: "* ";
   color: red;
 }
-.blue-green-label{
+
+.blue-green-label {
   color: var(--blue-green-color);
 }
-.copper-label{
+
+.copper-label {
   color: var(--copper-color);
   font-size: larger;
   font-family: 'GalanoGrotesque';
 }
-.heading-copper-label{
+
+.heading-copper-label {
   color: var(--copper-color);
   font-size: x-large;
   font-family: 'GalanoGrotesque';
 }
+
 .container {
   height: calc(100vh - 2rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
-.login {
-  background-image: url('../src/assets/images/SignInPageImage.jpg');
+
+.content-container {
+  margin-top: 30%;
 }
-.content-container{
-  margin-top: 9rem;
-}
+
 .circular-button {
   --background: var(--blue-green-color);
   --color: white;
@@ -84,6 +102,7 @@ ion-card-content{
   font-weight: bolder;
   font-family: 'Courier New', Courier, monospace;
 }
+
 .bottom-align {
   display: flex;
   justify-content: space-between;
@@ -94,31 +113,24 @@ ion-card-content{
   width: 100%;
 }
 
-.bottom-align .ion-col {
-  display: flex;
-  justify-content: flex-end;
-}
 .required-asterisk {
   color: red;
 }
-.custom-heading{
+
+.custom-heading {
   font-family: 'GalanoGrotesque';
   font-size: 45px;
   color: var(--copper-color);
   padding-left: 30px;
 }
+
 .header-logo {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   margin: 5%;
 }
-.user-agreements {
-  background-image: url('../src/assets/images/useragreement.jpg');
-}
-.forgot-password {
-  background-image: url('../src/assets/images/ForgotPasswordImage.jpeg');
-}
+
 .bg {
   display: flex;
   flex-direction: column;
@@ -126,18 +138,16 @@ ion-card-content{
   background-size: cover;
   height: 100vh;
 }
+
 .custom-button {
   --background: white;
   --color: rgba(184, 97, 37, 1);
   font-weight: bold;
 }
+
 .button-container {
   position: absolute;
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
 }
-
-
-
-

@@ -21,8 +21,6 @@ import { LoginPage } from './pages/login/login.page';
 import { SignUpPage } from './pages/signup/signup.page';
 import { StartPage } from './pages/start/start.page';
 import { CompanyProfilePage } from './pages/home/company-profile/company-profile.page';
-import { UserProfilePage } from './pages/home/user-profile/user-profile.page';
-
 import { AccountNotesPage } from './pages/home/account-notes/account-notes.page';
 import { DocumentsPage } from './pages/home/documents/documents.page';
 import { DocumentListPage } from './pages/home/document-list/document-list.page';
@@ -40,7 +38,7 @@ import { FilterPage } from './components/filter/filter.page';
 import { ResetPasswordPage } from './components/reset-password/reset-password.page';
 
 @NgModule({
-  declarations: [AppComponent, StartPage, HomePage, LoginPage, SignUpPage, CompanyProfilePage, UserProfilePage, Header, VerifyEmailPage,VerificationPage,VerificationSuccessfulPage,TellUsAboutYourselfPage,HowCanWeHelpPage,UsernamePasswordPage,UserAgreementsPage,BolHistoryPage,PaymentHistoryPage,FaqPage,ForgotPasswordPage,ContactYourRepPage,FilterPage,ResetPasswordPage,UserProfilePage, HomeScreenPage, AccountHistoryPage, VerifyFederalEin, AccountHistoryDetailsPage , AccountNotesPage, DocumentsPage, DocumentListPage, DocumentUploadPage, BankingInformationPage, VerifyMobileBankingPage , SearchFilterPipe],
+  declarations: [AppComponent, StartPage, HomePage, LoginPage, SignUpPage, CompanyProfilePage, Header, VerifyEmailPage,VerificationPage,VerificationSuccessfulPage,TellUsAboutYourselfPage,HowCanWeHelpPage,UsernamePasswordPage,UserAgreementsPage,BolHistoryPage,PaymentHistoryPage,FaqPage,ForgotPasswordPage,ContactYourRepPage,FilterPage,ResetPasswordPage, HomeScreenPage, AccountHistoryPage, VerifyFederalEin, AccountHistoryDetailsPage , AccountNotesPage, DocumentsPage, DocumentListPage, DocumentUploadPage, BankingInformationPage, VerifyMobileBankingPage , SearchFilterPipe],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
   bootstrap: [AppComponent]

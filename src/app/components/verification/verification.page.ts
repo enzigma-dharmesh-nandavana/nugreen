@@ -15,6 +15,8 @@ export class VerificationPage {
   @Output() data: EventEmitter<any> = new EventEmitter();
   @Output() onBack: EventEmitter<any> = new EventEmitter();
   @Output() onNext: EventEmitter<any> = new EventEmitter();
+  @Output() resendCode: EventEmitter<any> = new EventEmitter();
+
   codeControl = new FormControl('', Validators.required);
 
   ngOnInit() { }
@@ -27,7 +29,7 @@ export class VerificationPage {
     }
   }
   reSendCode() {
-    this.componentService.showAlert('We have send you a code again', 'Please check your email', '')
+    this.resendCode.emit();
   }
 
   handleBack() {

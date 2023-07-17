@@ -1,31 +1,29 @@
- <h1 class="custom-heading">Tell us<br>about<br>yourself</h1>
+<h1 class="custom-heading">Tell us<br>about<br>yourself</h1>
 <ion-list class="ion-margin ion-padding">
-  <div class="ion-margin-top">
-    <div>
-      <ion-label position="stacked">
-        <ion-text><span class="copper-label">SALUTATION</span></ion-text>
-      </ion-label>
-      <ion-select name="selectedSalutation" placeholder="Select a salutation" [(ngModel)]="contact.Salutation">
-        <ion-select-option value="Mr">Mr.</ion-select-option>
-        <ion-select-option value="Ms">Ms.</ion-select-option>
-        <ion-select-option value="Mrs">Mrs.</ion-select-option>
-      </ion-select>
-    </div>
-  </div>
+  <ion-item class="ion-margin-top">
+    <ion-label position="stacked">
+      <ion-text><span class="copper-label">SALUTATION</span></ion-text>
+    </ion-label>
+    <ion-select name="selectedSalutation" placeholder="Select a salutation" [(ngModel)]="contact.Salutation">
+      <ion-select-option value="Mr">Mr.</ion-select-option>
+      <ion-select-option value="Ms">Ms.</ion-select-option>
+      <ion-select-option value="Mrs">Mrs.</ion-select-option>
+    </ion-select>
+  </ion-item>
 
-  <div>
+  <ion-item>
     <ion-label position="stacked">
       <ion-text><span class="copper-label">FIRST NAME</span></ion-text>
     </ion-label>
     <ion-input type="text" [formControl]="firstNameControl" [(ngModel)]="contact.FirstName" maxLength="40"
       placeholder="Enter your first name"></ion-input>
-  </div>
+  </ion-item>
   <ion-text class="ion-text-align-start" color="danger"
     *ngIf="firstNameControl.hasError('pattern') && (firstNameControl.dirty || firstNameControl.touched)">
     Invalid Name
   </ion-text>
 
-  <div class="ion-margin-top"
+  <ion-item class="ion-margin-top"
     [class.has-error]="lastNameControl.invalid && (lastNameControl.dirty || lastNameControl.touched)">
     <ion-label position="stacked">
       <ion-text><span class="copper-label required-field">LAST NAME</span></ion-text>
@@ -36,13 +34,13 @@
       *ngIf="lastNameControl.hasError('pattern') && (lastNameControl.dirty || lastNameControl.touched)">
       Invalid Name
     </ion-text>
-  </div>
+  </ion-item>
   <ion-text class="ion-text-align-start" color="danger"
     *ngIf="lastNameControl.hasError('required') && (lastNameControl.dirty || lastNameControl.touched)">
     This field is required
   </ion-text>
 
-  <div class="ion-margin-top"
+  <ion-item class="ion-margin-top"
     [class.has-error]="companyNameControl.invalid && (companyNameControl.dirty || companyNameControl.touched)">
     <ion-label position="stacked">
       <ion-text><span class="copper-label required-field">COMPANY NAME</span></ion-text>
@@ -50,13 +48,13 @@
     </ion-label>
     <ion-input type="text" name="companyName" placeholder="Enter your company name" [formControl]="companyNameControl"
       [(ngModel)]="contact.Company_Name__c"></ion-input>
-  </div>
+  </ion-item>
   <ion-text class="ion-text-align-start" color="danger"
     *ngIf="companyNameControl.hasError('required') && (companyNameControl.dirty || companyNameControl.touched)">
     This field is required
   </ion-text>
 
-  <div class="ion-margin-top"
+  <div class="ion-margin-top ion-padding"
     [class.has-error]="preferredCommunicationControl.invalid && (preferredCommunicationControl.dirty || preferredCommunicationControl.touched)">
     <ion-label position="stacked" class="ion-text-wrap">
       <ion-text><span class="copper-label required-field">PREFERRED METHOD OF
@@ -77,19 +75,20 @@
     This field is required
   </ion-text>
 
-  <div class="ion-margin-top" [class.has-error]="phoneControl.invalid && (phoneControl.dirty || phoneControl.touched)">
+  <ion-item class="ion-margin-top"
+    [class.has-error]="phoneControl.invalid && (phoneControl.dirty || phoneControl.touched)">
     <ion-label position="stacked">
       <ion-text><span class="copper-label">PHONE</span></ion-text>
     </ion-label>
     <ion-input type="tel" name="Phone" placeholder="Enter your phone" [(ngModel)]="contact.Phone"
       [formControl]="phoneControl" maxlength="10"></ion-input>
-  </div>
+  </ion-item>
   <ion-text class="ion-text-align-start" color="danger"
     *ngIf="(phoneControl.errors?.['pattern'] || phoneControl.errors?.['minlength']) && (phoneControl.dirty || phoneControl.touched)">
     Invalid Phone Number
   </ion-text>
 
-  <div class="ion-margin-top">
+  <div class="ion-margin-top ion-padding-start">
     <ion-label position="stacked">
       <ion-text><span class="copper-label required-field">MOBILE</span></ion-text>
     </ion-label>
@@ -99,10 +98,11 @@
           <ion-select placeholder="Code" [(ngModel)]="countryCode">
             <ion-select-option value="+1">(+1) US</ion-select-option>
             <ion-select-option value="+44">(+44) UK</ion-select-option>
+            <ion-select-option value="+91">(+91) IN</ion-select-option>
           </ion-select>
         </ion-col>
         <ion-col size="8" class="ion-align-start">
-          <ion-input class="mobile-input" type="tel" placeholder="Enter your mobile" [(ngModel)]="contact.MobilePhone"
+          <ion-input class="mobile-input" type="tel" placeholder="Enter your mobile" [(ngModel)]="mobileNumber"
             [formControl]="mobileControl" maxlength="10"></ion-input>
         </ion-col>
       </ion-row>
@@ -117,11 +117,10 @@
     Invalid Mobile Number
   </ion-text>
 
-  <div class="ion-margin-top"
+  <div class="ion-margin-top ion-padding-start"
     [class.has-error]="recyclingCompanyControl.invalid && (recyclingCompanyControl.dirty || recyclingCompanyControl.touched)">
     <ion-label position="stacked" class="ion-text-wrap">
-      <ion-text><span class="copper-label required-field">ARE YOU A RECYCLING
-          COMPANY?</span></ion-text>
+      <ion-text><span class="copper-label required-field">ARE YOU A RECYCLING COMPANY?</span></ion-text>
     </ion-label> <br>
     <ion-radio-group [(ngModel)]="contact.Are_you_a_recycling_company__c" [formControl]="recyclingCompanyControl">
       <ion-radio class="ion-padding-start ion-padding-top" slot="start" value=true labelPlacement="end">Yes</ion-radio>

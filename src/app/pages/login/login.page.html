@@ -1,10 +1,10 @@
 <ion-content>
-  <div *ngIf="!isMfaRequired" class="bg login">
+  <div *ngIf="!isMfaRequired" class="bg-image login-container">
     <div class="logo-container">
-      <ion-img class="login-image" src="./assets/images/whitemainlogo.png" alt="ngmlogo"></ion-img>
+      <ion-img src="./assets/images/whitemainlogo.png" alt="ngmlogo"></ion-img>
     </div>
-    <div class="ion-margin-top ion-padding">
-      <ion-text class="copper-label">Username</ion-text>
+    <div class="ion-margin-top input-container">
+      <ion-text class="ion-padding-top copper-label">Username</ion-text>
       <ion-item class="ion-margin-top">
         <ion-input type="text" name="username" placeholder="Enter username" [(ngModel)]="user.userName"
           (ionInput)="checkValid($event)"></ion-input>
@@ -17,9 +17,9 @@
           (click)="togglePasswordVisibility()"></ion-icon>
       </ion-item>
       <div class="ion-margin-top ion-text-end">
-        <ion-button fill="clear" [routerLink]="['/forgot-password']" color="light">Forgot Password?</ion-button>
+        <ion-button fill="clear" [routerLink]="['/forgot-password']" color="light">Forgot Password ?</ion-button>
       </div>
-      <div class="ion-margin-top">
+      <div class="ion-padding">
         <ion-button [disabled]="invalid" expand="block" class="custom-button" size="full" shape="round"
           (click)="verifyLogin()">Login</ion-button>
       </div>

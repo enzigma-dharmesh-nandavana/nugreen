@@ -1,39 +1,42 @@
-<div class="ion-padding">
-  <div class="ion-margin-top ion-text-center">
-    <h3>Transaction History</h3>
+<nu-header></nu-header>
+<ion-content>
+  <div class="content-container">
+    <div class="ion-margin-top ion-text-center">
+      <h3>Transaction History</h3>
+    </div>
+    <div class="ion-margin-top">
+      <ion-list lines="none">
+        <ng-container *ngFor="let date of transactionDates">
+          <ion-item-divider>
+            <ion-label>{{ date }}</ion-label>
+          </ion-item-divider>
+          <ion-item *ngFor="let transaction of transactionGroups[date]">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="2" class="ion-text-start">
+                  <ion-icon name="swap-horizontal-outline"></ion-icon>
+                </ion-col>
+                <ion-col size="4" class="ion-text-start">
+                  {{ transaction.name }}
+                </ion-col>
+                <ion-col size="3" class="ion-text-center">
+                  {{ transaction.amount }}
+                </ion-col>
+                <ion-col size="3" class="ion-text-end">
+                  <ion-button (click)="toggleInvoice(transaction)" fill="clear" class="ion-text-wrap">See Invoice</ion-button>
+                </ion-col>
+              </ion-row>
+              <ion-row *ngIf="transaction.showInvoice">
+                <ion-col size="12">
+                  <div class="invoice-container">
+                    <img src={{transaction.invoiceImage}} alt="Invoice">
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ng-container>
+      </ion-list>
+    </div>
   </div>
-  <div class="ion-margin-top">
-    <ion-list lines="none">
-      <ng-container *ngFor="let date of transactionDates">
-        <ion-item-divider>
-          <ion-label>{{ date }}</ion-label>
-        </ion-item-divider>
-        <ion-item *ngFor="let transaction of transactionGroups[date]">
-          <ion-grid>
-            <ion-row>
-              <ion-col size="2" class="ion-text-start">
-                <ion-icon name="swap-horizontal-outline"></ion-icon>
-              </ion-col>
-              <ion-col size="4" class="ion-text-start">
-                {{ transaction.name }}
-              </ion-col>
-              <ion-col size="3" class="ion-text-center">
-                {{ transaction.amount }}
-              </ion-col>
-              <ion-col size="3" class="ion-text-end">
-                <ion-button (click)="toggleInvoice(transaction)" fill="clear" class="ion-text-wrap">See Invoice</ion-button>
-              </ion-col>
-            </ion-row>
-            <ion-row *ngIf="transaction.showInvoice">
-              <ion-col size="12">
-                <div class="invoice-container">
-                  <img src={{transaction.invoiceImage}} alt="Invoice">
-                </div>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-item>
-      </ng-container>
-    </ion-list>
-  </div>
-</div>
+</ion-content>

@@ -5,8 +5,9 @@
       <ion-searchbar show-clear-button="focus" placeholder="Search" [value]="searchText"
         (ionInput)="onSearch($event)"></ion-searchbar>
     </div>
-  
-    <ion-card (click)="handleTradeCardClick(trade)" type="button" *ngFor="let trade of trades | searchFilter: searchText">
+
+    <ion-card (click)="handleTradeCardClick(trade)" type="button"
+      *ngFor="let trade of trades | searchFilter : searchText :Fields">
       <div class="card-container">
         <div slot="start">
           <ion-icon *ngIf="trade.Status__c==='Paid'" size="large" class="ion-padding"
@@ -20,29 +21,12 @@
           <ion-card-title>{{ trade.Name }}</ion-card-title>
         </ion-card-header>
       </div>
-  
-      <!-- Card Content -->
+
       <ion-card-content>
-        <div>
-          <ion-label class="blue-green-label">Created On: {{ trade.createdDate }}</ion-label>
-        </div>
-        <div>
-          <ion-label class=" blue-green-label">Number of items: {{ trade.Number_of_Items__c }}</ion-label>
-        </div>
-        <div>
-          <ion-label class="blue-green-label">Total Weight: {{ trade.Total_Weight__c }} Pounds</ion-label>
-        </div>
-        <div>
-          <ion-label class="blue-green-label">Total amount (excl. taxes): $ {{ trade.Total_Amount__c }}</ion-label>
-        </div>
-        <div>
-          <ion-label class="blue-green-label">Status: {{ trade.Status__c }}</ion-label>
-        </div>
-        <div ion-text-center>
-          <ion-label class="blue-green-label">{{ trade.shipmentDetails }}</ion-label>
+        <div *ngFor="let tradeDetail of tradeDetailsMap">
+          <ion-label class="blue-green-label">{{ tradeDetail.label }} : {{ trade[tradeDetail.field] }}</ion-label>
         </div>
       </ion-card-content>
-  
     </ion-card>
   </div>
 </ion-content>

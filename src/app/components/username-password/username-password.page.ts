@@ -1,11 +1,11 @@
-import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { User } from 'src/app/models/models';
 
 @Component({
   selector: 'username-password',
-  templateUrl: './username-password.page.html'
+  templateUrl: './username-password.page.html',
+  styleUrls: ['./username-password.page.scss'],
 })
 export class UsernamePasswordPage implements OnInit {
 

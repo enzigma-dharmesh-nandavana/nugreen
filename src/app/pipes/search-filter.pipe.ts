@@ -1,22 +1,26 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Trade } from 'src/app/models/models';
 
 @Pipe({
   name: 'searchFilter'
 })
 export class SearchFilterPipe implements PipeTransform {
-    transform(trades: Trade[], searchText: string): Trade[] {
-        if (!searchText) {
-          return trades;        // Return all trades if search text is empty
-        }
-    
-        const query = searchText.toLowerCase();
-        return trades.filter((trade: Trade) => {
-          if (trade.Name) {
-            const tradeName = trade.Name.toLowerCase();
-            return tradeName.includes(query);
+  transform(items: any[], searchText: string, fields: string[]): any[] {
+    if (!searchText || !fields || fields.length === 0) {
+      return items;
+    }
+
+    const query = searchText.toLowerCase();
+    return items.filter((item: any) => {
+      for (const property of fields) {
+        if (Object.prototype.hasOwnProperty.call(item, property)) {
+          const itemValue = String(item[property]).toLowerCase();
+          if (itemValue.includes(query)) {
+            return true;
           }
-          return false; // Ignore trades without a Name property
-        });
+        }
       }
+      return false;
+    });
+  }
 }
+

@@ -1,7 +1,90 @@
-<nu-header></nu-header>
 <ion-content>
   <div class="content-container">
-    <ng-template [ngIf]="!company.isVerified">
+    <ion-text class="ion-text-center">
+      <h2 class="heading-copper-label">BANKING INFORMATION</h2>
+    </ion-text>
+    <ion-list class="ion-margin">
+
+      <!-- Bank Name -->
+      <ion-item class="ion-margin-top">
+        <ion-label position="stacked">
+          <ion-text class="copper-label required-field">BANK NAME</ion-text>
+        </ion-label>
+        <ion-input type="text" [formControl]="bankNameControl" [(ngModel)]="company.Bank_Name__c"
+          [readonly]="company.Verified__c && !editMode"></ion-input>
+        <ion-icon *ngIf="!editMode && company.Verified__c" class="ion-padding" name="pencil" slot="end"
+          (click)="toggleEditMode()"></ion-icon>
+      </ion-item>
+
+      <!-- Account Holder Name -->
+      <ion-item class="ion-margin-top">
+        <ion-label position="stacked">
+          <ion-text class="copper-label required-field">ACCOUNT HOLDER NAME</ion-text>
+        </ion-label>
+        <ion-input type="text" [formControl]="accountHolderNameControl" [(ngModel)]="company.Account_Holder_Name__c"
+          [readonly]="company.Verified__c && !editMode"></ion-input>
+        <ion-icon *ngIf="!editMode && company.Verified__c" class="ion-padding" name="pencil" slot="end"
+          (click)="toggleEditMode()"></ion-icon>
+      </ion-item>
+
+      <!-- Account Number -->
+      <ion-item class="ion-margin-top">
+        <ion-label position="stacked">
+          <ion-text class="copper-label required-field">ACCOUNT NUMBER</ion-text>
+        </ion-label>
+        <ion-input type="number" [formControl]="accountNumberControl" [(ngModel)]="company.Account_Number__c"
+          [readonly]="company.Verified__c && !editMode"></ion-input>
+        <ion-icon *ngIf="!editMode && company.Verified__c" class="ion-padding" name="pencil" slot="end"
+          (click)="toggleEditMode()"></ion-icon>
+      </ion-item>
+
+      <!-- Routing Number -->
+      <ion-item class="ion-margin-top">
+        <ion-label position="stacked">
+          <ion-text class="copper-label required-field">ROUTING NUMBER</ion-text>
+        </ion-label>
+        <ion-input type="number" [formControl]="routingNumberControl" [(ngModel)]="company.Routing_Number__c"
+          [readonly]="company.Verified__c && !editMode"></ion-input>
+        <ion-icon *ngIf="!editMode && company.Verified__c" class="ion-padding" name="pencil" slot="end"
+          (click)="toggleEditMode()"></ion-icon>
+      </ion-item>
+
+      <!-- Payment Method -->
+      <div class="ion-margin-top ion-padding">
+        <ion-label position="stacked">
+          <ion-text class="copper-label required-field">PAYMENT METHOD</ion-text>
+        </ion-label>
+        <ion-radio-group required="true" [formControl]="paymentMethodControl" [(ngModel)]="company.Payment_Method__c"> <br>
+          <ion-radio class="ion-padding-start ion-margin-top" slot="start" value="ACH" [disabled]="!editMode && company.Verified__c" labelPlacement="end">ACH</ion-radio> <br>
+          <ion-radio class="ion-padding-start ion-margin-top" slot="start" value="Wire" [disabled]="!editMode && company.Verified__c" labelPlacement="end">Wire</ion-radio>
+        </ion-radio-group>
+      </div>
+
+      
+    </ion-list>
+    <!-- Buttons -->
+    <div class="bottom-align ion-padding" *ngIf="company.Verified__c">
+      <ion-fab-button size="large" class="circular-button">
+        <span class="button-text" (click)=onBack()>&lt;</span>
+      </ion-fab-button>
+      <ion-button *ngIf="editMode" size="large" shape="round" (click)="onSave()">Save</ion-button>
+    </div>
+    
+    <div class="bottom-align ion-padding" *ngIf="!company.Verified__c">
+      <ion-fab-button size="large" class="circular-button" (click)=onBack()>
+        <span class="button-text">&lt;</span>
+      </ion-fab-button>
+
+      <ion-fab-button size="large" class="circular-button" shape="round" (click)=onNext()>
+        <span class="button-text">&gt;</span>
+      </ion-fab-button>
+    </div>
+  </div>
+</ion-content>
+
+<!-- <ion-content>
+  <div class="content-container">
+    <ng-template [ngIf]="!company.Verified__c">
       <ion-text class="ion-text-center">
         <h2 class="heading-copper-label">BANKING INFORMATION</h2>
       </ion-text>
@@ -68,14 +151,14 @@
       </ion-list>
     </ng-template>
 
-    <ng-template [ngIf]="company.isVerified">
+    <ng-template [ngIf]="company.Verified__c">
       <ion-text class="ion-text-center">
         <h2 class="heading-copper-label">BANKING INFORMATION</h2>
       </ion-text>
       <ion-list class="ion-margin">
 
         <ion-item class="ion-margin-top">
-          <ion-label position="stacked"><span class="required-asterisk" *ngIf="editMode">* </span>Bank Name</ion-label>
+          <ion-label position="stacked">Bank Name</ion-label>
           <ion-input type="text" [value]="company.Bank_Name__c" (ionChange)="handleBankName($event)"
             [clearOnEdit]="true" [readonly]="! editMode" required="true">
           </ion-input>
@@ -84,7 +167,7 @@
         </ion-item>
 
         <ion-item class="ion-margin-top">
-          <ion-label position="stacked"><span class="required-asterisk" *ngIf="editMode">* </span>Account Holder
+          <ion-label position="stacked">Account Holder
             Name</ion-label>
           <ion-input type="text" [value]="company.Account_Holder_Name__c" (ionChange)="handleAccountHolderName($event)"
             [clearOnEdit]="true" [readonly]="! editMode" required="true">
@@ -94,7 +177,7 @@
         </ion-item>
 
         <ion-item class="ion-margin-top" *ngIf="editMode">
-          <ion-label position="stacked"><span class="required-asterisk" *ngIf="editMode">* </span>Account
+          <ion-label position="stacked">Account
             Number</ion-label>
           <ion-input type="number" [value]="company.Account_Number__c" (ionChange)="handleAccountNumber($event)"
             [clearOnEdit]="true" [readonly]="!editMode" required="true">
@@ -102,7 +185,7 @@
           <ion-icon *ngIf="!editMode" class="ion-padding" name="pencil" slot="end"
             (click)="toggleEditMode()"></ion-icon>
         </ion-item>
-        <!-- FOR MASKING ACCOUNT NUMBER-->
+
         <ion-item class="ion-margin-top" *ngIf="!editMode">
           <ion-label position="stacked">Account Number</ion-label>
           <ion-input type="text" value="XXXX XXXX XXXX" [readonly]="true" required="true">
@@ -112,7 +195,7 @@
 
 
         <ion-item class="ion-margin-top">
-          <ion-label position="stacked"><span class="required-asterisk" *ngIf="editMode">* </span>Routing
+          <ion-label position="stacked">Routing
             Number</ion-label>
           <ion-input type="number" [value]="company.Routing_Number__c" (ionChange)="handleRoutingNumber($event)"
             [clearOnEdit]="true" [readonly]="! editMode" required="true">
@@ -122,7 +205,7 @@
         </ion-item>
 
         <ion-item class="ion-margin-top">
-          <ion-label position="stacked"><span class="required-asterisk" *ngIf="editMode">* </span>Payment
+          <ion-label position="stacked">Payment
             Method</ion-label>
           <ion-radio-group required="true" [value]="company.Payment_Method__c"
             (ionChange)="handlePaymentMethod($event)">
@@ -159,4 +242,4 @@
       
     </ng-template>
   </div>
-</ion-content>
+</ion-content> -->

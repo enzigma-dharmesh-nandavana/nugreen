@@ -72,7 +72,7 @@ export class EngineService {
 
   //Company
   async getCompanyProfile(): Promise<Result> {
-    return await this.callout.get('/company');
+    return await this.callout.get('company');
   }
 
   //Trade

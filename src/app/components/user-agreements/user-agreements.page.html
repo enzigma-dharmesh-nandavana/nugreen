@@ -1,29 +1,29 @@
-<ion-card>
-  <div class="ion-padding">
+<div class="bg user-agreements">
+  <ion-card class="agree-container">
     <h3 class="ion-text-center copper-label">{{ currentAgreement.title }}</h3>
-    <ion-text>{{ currentAgreement.content }}</ion-text> <br>
-    <ion-radio-group [(ngModel)]="contact[currentAgreement.apiName]" (ionChange)="checkValue($event, currentIndex)">
-      <ion-radio class="ion-padding-start ion-padding-top" slot="start" value="true"
-        labelPlacement="end">Agree</ion-radio> <br>
-      <ion-radio class="ion-padding-start ion-padding-top" slot="start" value="false"
-        labelPlacement="end">Disagree</ion-radio>
-    </ion-radio-group> <br>
-    <ion-text class="ion-padding-start ion-text-align-start" color="danger" *ngIf="showErrorMessage">Please agree to continue</ion-text>
-  </div>
-</ion-card>
-<ion-row class=" bottom-align ion-padding ion-justify-content-between ion-align-items-end">
-  <ion-col size="auto">
-    <ion-fab-button size="large" *ngIf="currentIndex > 0" size="large" class="circular-button" (click)="goBack()">
+    <div class="ion-padding scrollable-content">
+      <ion-text>{{ currentAgreement.content }}</ion-text>
+    </div>
+    <div class="radio-buttons ion-margin-top">
+      <ion-radio-group [(ngModel)]="contact[currentAgreement.apiName]" (ionChange)="checkValue($event, currentIndex)">
+        <ion-radio class="ion-padding-start" slot="start" value="true" labelPlacement="end">Agree</ion-radio> <br>
+        <ion-radio class="ion-padding-start" slot="start" value="false" labelPlacement="end">Disagree</ion-radio>
+      </ion-radio-group> <br>
+      <ion-text class="ion-padding-start ion-text-align-start" color="danger" *ngIf="showErrorMessage">Please agree to
+        continue</ion-text>
+    </div>
+  </ion-card>
+  <div class="ion-padding">
+    <ion-fab-button size="large" *ngIf="currentIndex > 0" class="circular-button ion-float-start" (click)="goBack()">
       <span class="button-text">&lt;</span>
     </ion-fab-button>
-  </ion-col>
-  <ion-col size="auto">
-    <ion-fab-button class="ion-float-end" size="large" *ngIf="currentIndex < agreements.length - 1"
-      class="circular-button" (click)="goNext(currentIndex)" [disabled]="disableNext">&gt;
+    <ion-fab-button size="large" *ngIf="currentIndex < agreements.length - 1" class="circular-button ion-float-end"
+      (click)="goNext(currentIndex)" [disabled]="disableNext">
+      <span class="button-text">&gt;</span>
     </ion-fab-button>
-    <ion-button [disabled]="disableNext" size="large" shape="round" *ngIf="!(currentIndex < agreements.length - 1)"
-      (click)="goNext(currentIndex)">
+    <ion-button class="ion-float-end" [disabled]="disableNext" size="large" shape="round"
+      *ngIf="!(currentIndex < agreements.length - 1)" (click)="goNext(currentIndex)">
       <span class="button-text">Submit</span>
     </ion-button>
-  </ion-col>
-</ion-row>
+  </div>
+</div>

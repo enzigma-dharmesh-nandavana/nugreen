@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Result, Company } from 'src/app/models/models';
-import { EngineService } from 'src/app/service/engine.service';
+import { Company } from 'src/app/models/models';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'nu-header',
@@ -9,29 +9,20 @@ import { EngineService } from 'src/app/service/engine.service';
   styleUrls: ['./header.page.scss'],
 })
 export class Header implements OnInit {
-
   company = new Company();
   showHamburger = false;
   currentPageUrl !: string;
-  isRegistered = false;
 
-  constructor(private router: Router, private engine: EngineService) { }
+  constructor(private router: Router, private userService: UserService) { }
   ngOnInit() {
-    // this.getCompanyProfile();
+    this.userService.onCompanyUpdated.subscribe(() => {
+      this.company = this.userService.company;
+    });
     this.currentPageUrl = this.router.url;
     if (this.currentPageUrl.includes('account-history')) {
       this.showHamburger = true;
+    }else{
+      this.showHamburger = false;
     }
-  }
-
-  getCompanyProfile() {
-    this.engine.getCompanyProfile().then((result: Result) => {
-      if (this.company.isVerified) {
-        this.company.Full_Legal_Name_Of_Business__c = 'Agile Recycling';
-        this.company.Vendor_Number__c = 'DTX-007';
-      }
-    }).catch((result: Result) => {
-      alert(result.message);
-    })
   }
 }

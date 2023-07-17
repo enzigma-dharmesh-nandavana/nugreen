@@ -22,8 +22,7 @@ export class SignUpPage {
   user = new User();
   contact = new Contact();
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   async verifyCode(data: any) {
     this.componentService.showSpinner()
@@ -84,7 +83,6 @@ export class SignUpPage {
   }
 
   onRegister() {
-    console.log('In Register');
     this.componentService.showSpinner();
     this.engine.register(this.user, this.contact).then((result: Result) => {
       if (result.success) {
@@ -92,7 +90,7 @@ export class SignUpPage {
         this.cookie.set('sid', result.data.sid, Date.parse(result.data.expiresOn));
         this.componentService.hideSpinner();
         this.componentService.showToaster(result.message, Color.success, Position.bottom)
-        this.page = 'userAgreements'
+        this.page='userAgreements';
       } else {
         this.componentService.hideSpinner();
         this.componentService.showToaster(result.message, Color.danger, Position.bottom)
@@ -119,5 +117,21 @@ export class SignUpPage {
       this.componentService.showToaster(err.message,);
     })
   }
-
+  reSendCode() {
+    this.componentService.showSpinner()
+    this.engine.sendCode(this.contact.Email as string).then((result: Result) => {
+      if (result.success) {
+        this.user.email = this.contact.Email;
+        this.user.verificationCodeId = result.data.verificationCodeId;
+        this.user.email = this.contact.Email;
+        this.componentService.showAlert('We have send you a code again', 'Please check your email', '')
+      } else {
+        this.componentService.showToaster(result.message, Color.danger)
+      }
+      this.componentService.hideSpinner()
+    }).catch((ex) => {
+      this.componentService.hideSpinner()
+      this.componentService.showToaster(ex.message, Color.danger)
+    })
+  }
 }

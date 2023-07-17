@@ -1,4 +1,4 @@
-<ion-menu contentId="main-content" *ngIf="isRegistered">
+<ion-menu contentId="main-content" *ngIf="company.Verified__c && showHamburger">
   <ion-content class="ion-padding">
     <ion-list>
       <ion-item routerLink="/filter">
@@ -29,12 +29,12 @@
   </ion-content>
 </ion-menu>
 
-<ion-header class="header-container" [translucent]="true" id="main-content"> 
+<ion-header class="header-container" id="main-content"> 
   <ion-toolbar class="header-toolbar" >
     <ion-grid>
       <ion-row class="ion-align-items-center">
         <ion-col size="4" class="ion-text-center">
-          <ion-buttons size="large" *ngIf="company.isVerified">
+          <ion-buttons size="large" *ngIf="company.Verified__c">
             <ion-menu-button></ion-menu-button>
           </ion-buttons>
         </ion-col>
@@ -42,7 +42,7 @@
           <img class="logo-image" src="assets/header-logo-stacked.png" alt="ngmlogostacked">
         </ion-col>
         <ion-col size="4">
-          <div class="profile-section ion-text-end" *ngIf="company.isVerified">
+          <div class="profile-section ion-text-end" *ngIf="company.Verified__c">
             <ion-icon class="ion-padding-start" name="notifications" size="large"></ion-icon>
             <ion-icon class="ion-padding-start" name="person" size="large"></ion-icon>
             <div>
